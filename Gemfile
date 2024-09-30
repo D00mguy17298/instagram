@@ -68,4 +68,4 @@ end
 
 gem "devise"
 
-gem "devise_invitable"
+gem "letter_opener", group: :development
