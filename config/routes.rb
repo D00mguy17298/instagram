@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations" , confirmations: "users/confirmations" }
+  devise_for :users, controllers: {confirmations: "users/confirmations" }
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  devise_scope :user do
-    root "devise/sessions#new"
-  end
+  get 'dashboard', to: 'dashboard#index', as: :dashboard
+
+  root to: 'dashboard#index'
+  
 end
