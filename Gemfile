@@ -69,3 +69,11 @@ end
 gem "devise"
 
 gem "letter_opener", group: :development
+
+gem "cancancan"
+
+gem "activeadmin"
+
+gem "sassc-rails"
+
+gem 'carrierwave', '~> 2.0'

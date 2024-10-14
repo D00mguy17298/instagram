@@ -9,4 +9,24 @@ class User < ApplicationRecord
          def password_required?
           confirmed? ? super : false
         end
+
+        has_many :posts, dependent: :destroy
+
+        enum role: { user: 'user', admin: 'admin' }
+      
+        after_initialize :set_default_role, if: :new_record?
+      
+        def set_default_role
+          self.role ||= :user
+        end
+      
+        def self.ransackable_attributes(auth_object = nil)
+          %w[email role created_at]
+        end
+      
+        def self.ransackable_associations(auth_object = nil)
+          ["posts"]
+        end
+
+  
 end

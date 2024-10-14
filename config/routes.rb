@@ -12,5 +12,12 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
   root to: 'dashboard#index'
+  resources :posts
   
+  namespace :admin do
+    resources :users
+  end
+
+  ActiveAdmin.routes(self)
+
 end
