@@ -5,7 +5,9 @@
 <% if current_user.avatar.attached? %>
   <%= image_tag current_user.avatar, size: "100x100" %>
 <% else %>
-  <p>No profile picture uploaded.</p>
+  <div style="width: 100px; height: 100px; background-color: #ccc; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+    <%= current_user.initials %>
+  </div>
 <% end %>
 
 <%= link_to 'Edit Profile', edit_profile_dashboard_index_url, class: 'btn btn-secondary' %>

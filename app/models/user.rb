@@ -3,15 +3,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-         
-         protected
-         def password_required?
-          confirmed? ? super : false
-        end
+  has_one_attached :avatar
 
-        has_many :posts, dependent: :destroy
+  validates :name, presence: true
+  def initials
+    name.split.map { |part| part[0] }.join.upcase
+  end
 
-        enum role: { user: 'user', admin: 'admin' }
+  has_many :posts, dependent: :destroy
+
+  enum role: { user: 'user', admin: 'admin' }
       
         after_initialize :set_default_role, if: :new_record?
       
@@ -26,7 +27,17 @@ class User < ApplicationRecord
         def self.ransackable_associations(auth_object = nil)
           ["posts"]
         end
+         
+         protected
+         def password_required?
+          confirmed? ? super : false
+        end
 
-        has_one_attached :avatar
+        
+
+        
+
+
+        
 
 end
