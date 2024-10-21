@@ -1,0 +1,17 @@
+<h1>Edit Profile</h1>
+
+<%= form_with(model: current_user, url: update_profile_dashboard_index_url, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Profile' %>
+  </div>
+<% end %>
