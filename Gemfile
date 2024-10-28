@@ -76,4 +76,6 @@ gem "activeadmin"
 
 gem "sassc-rails"
 
-gem 'carrierwave', '~> 2.0'
+gem "searchkick"
+
+gem "elasticsearch"

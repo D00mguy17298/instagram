@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users
+
   end
+  
+  get 'users/index', to: 'users#index'
 
   ActiveAdmin.routes(self)
 
