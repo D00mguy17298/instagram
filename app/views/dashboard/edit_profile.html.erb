@@ -15,7 +15,14 @@
     <%= form.file_field :avatar %>
   </div>
 
+  <div>
+  <%= form.label :status %><br>
+  <%= form.select :status, Visible::VALID_USER_STATUSES, selected: @user.status || 'public' %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Update Profile' %>
   </div>
+
+  
 <% end %>

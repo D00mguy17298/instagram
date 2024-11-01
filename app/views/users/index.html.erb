@@ -1,6 +1,6 @@
 <h1>Search for Users</h1>
 
-<%= form_with url: users_index_path	, method: :get, local: true do %>
+<%= form_with url: users_path	, method: :get, local: true do %>
   <div class="form-group">
     <%= label_tag :query, "Search" %>
     <%= text_field_tag :query, params[:query], class: "form-control" %>
@@ -13,6 +13,7 @@
   <ul>
     <% @users.each do |user| %>
       <li><%= user.name %></li>
+      <li><%= link_to "View Profile", user_path(user) %></li>
     <% end %>
   </ul>
 <% else %>

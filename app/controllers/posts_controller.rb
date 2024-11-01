@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-
   def new
     @post = Post.new
   end
@@ -46,10 +45,14 @@ class PostsController < ApplicationController
     end
   end
   
+  def archived
+    @posts = current_user.posts.where(status: 'archived')
+  end
+  
   
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :status)
   end
 end

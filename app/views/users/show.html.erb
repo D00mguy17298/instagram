@@ -1,0 +1,21 @@
+<section id="all-links">
+  <% if @user.id == current_user.id %>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <% elsif current_user.followees.include?(@user) %>
+    <h5><%= button_to "Unfollow", unfollow_user_path, method: :post %></h5>
+  <% else %>
+    <h5><%= button_to "Follow", follow_user_path, method: :post %></h5>
+  <% end %>
+  <br>
+</section>
+
+<% if @user.private? && !current_user.followees.include?(@user) %>
+  <p>This user's posts are private. Please follow them to see their posts.</p>
+<% else if%>
+  <% if @post %>
+    <h1><%= @post.title %></h1>
+    <p><%= @post.content %></p>
+  <% else %>
+    <p>No post available.</p>
+  <% end %>
+<% end %>

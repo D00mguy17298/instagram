@@ -1,11 +1,17 @@
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
+  include Visible
   searchkick
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_one_attached :avatar
+
+  has_many :followed_users, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :followees, through: :followed_users
+  has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
+  has_many :followers, through: :following_users
 
   validates :name, presence: true
   def initials
@@ -45,8 +51,12 @@ class User < ApplicationRecord
           confirmed? ? super : false
         end
 
+        
 
 
+        def user_params
+          params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar,:status)
+        end
         
 
         

@@ -1,12 +1,12 @@
 <h1>Edit Post</h1>
 
-<%= form_with(model: @posts, local: true) do |form| %>
+<%= form_with(model: @post, local: true) do |form| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@posts.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-        <% @posts.errors.full_messages.each do |message| %>
+        <% @post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -21,6 +21,11 @@
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Post::VALID_POST_STATUSES, selected: 'public' %>
   </div>
 
   <div class="actions">

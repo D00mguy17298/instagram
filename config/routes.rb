@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :follows
   devise_for :users, controllers: {confirmations: "users/confirmations" }
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,15 +16,26 @@ Rails.application.routes.draw do
     patch 'update_profile', on: :collection
   end
 
-  resources :posts
+  resources :posts do
+    collection do
+      get 'archived'
+    end
+  end
+  
+  
   root 'dashboard#show'
   
   namespace :admin do
     resources :users
 
   end
-  
-  get 'users/index', to: 'users#index'
+
+  resources :users, only: [:index, :show] do
+    member do
+      post 'follow'
+      post 'unfollow'
+    end
+  end
 
   ActiveAdmin.routes(self)
 
