@@ -1,8 +1,22 @@
-<%= form_with model: posts do |form| %>
+<%= form_with model: post do |form| %>
+
+   <div class="field">
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar %>
+  </div>
+
+  <div>
+    <%= form.label :location %><br>
+    <%= form.text_field :location %>
+    <% post.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
-    <% posts.errors.full_messages_for(:title).each do |message| %>
+    <% post.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
@@ -10,7 +24,7 @@
   <div>
     <%= form.label :content %><br>
     <%= form.text_area :content %><br>
-    <% posts.errors.full_messages_for(:content).each do |message| %>
+    <% post.errors.full_messages_for(:content).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
