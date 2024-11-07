@@ -5,6 +5,8 @@ module Visible
 
   VALID_POST_STATUSES = ['public', 'archived']
 
+  
+
   included do
     validates :status, inclusion: { in:  VALID_POST_STATUSES + VALID_USER_STATUSES }
   end

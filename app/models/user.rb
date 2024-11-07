@@ -14,11 +14,18 @@ class User < ApplicationRecord
   has_many :followers, through: :following_users
 
   validates :name, presence: true
+
+  validates :email, presence: true, uniqueness: true
+  
+  has_many :likes , dependent: :destroy
+  
+
   def initials
     name.split.map { |part| part[0] }.join.upcase
   end
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   enum role: { user: 'user', admin: 'admin' }
       
@@ -55,7 +62,7 @@ class User < ApplicationRecord
 
 
         def user_params
-          params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar,:status)
+          params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar, :status)
         end
         
 

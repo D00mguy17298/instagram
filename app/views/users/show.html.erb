@@ -11,10 +11,15 @@
 
 <% if @user.private? && !current_user.followees.include?(@user) %>
   <p>This user's posts are private. Please follow them to see their posts.</p>
-<% else if%>
-  <% if @post %>
-    <h1><%= @post.title %></h1>
-    <p><%= @post.content %></p>
+<% else %>
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <%= link_to post_path(post) do %>
+        <h3><%= post.title %></h3>
+        <%= social_share_button_tag(post.title) %>
+
+      <% end %>
+    <% end %>
   <% else %>
     <p>No post available.</p>
   <% end %>

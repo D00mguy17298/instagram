@@ -79,3 +79,7 @@ gem "sassc-rails"
 gem "searchkick"
 
 gem "elasticsearch"
+
+gem 'social-share-button'
+
+gem 'noticed'

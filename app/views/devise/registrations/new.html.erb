@@ -13,6 +13,11 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, [['Public', 'public'], ['Private', 'private']], { include_blank: 'Select Status' }, autocomplete: "status" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

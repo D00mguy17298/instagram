@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     collection do
       get 'archived'
     end
+    resources :comments, only: [:create]
   end
   
   
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :homepage , only: [:show] 
+  resources :likes, only: [:create, :destroy]
   ActiveAdmin.routes(self)
 
 end
