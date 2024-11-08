@@ -13,7 +13,7 @@
   <% end %>
 <% else %>
   <h1>Suggested for you</h1>
-  <% User.order(followers_count: :desc).limit(10).each do |user| %>
+  <% User.all.sort_by(&:followers_count).reverse.first(10).each do |user| %>
     <% user.posts.each do |post| %>
       <div class="post">
         <h2><%= post.title %></h2>

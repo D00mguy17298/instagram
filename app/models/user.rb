@@ -52,6 +52,10 @@ class User < ApplicationRecord
         def self.search_users(query)
           User.search(query, fields: [:name], match: :word_start)
         end
+
+        def followers_count
+          followers.size
+        end
          
          protected
          def password_required?
