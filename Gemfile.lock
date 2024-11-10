@@ -90,12 +90,17 @@ GEM
     arbre (1.7.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
+    autoprefixer-rails (10.4.19.0)
+      execjs (~> 2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    bootstrap (5.3.3)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
     builder (3.3.0)
     cancancan (3.6.1)
     capybara (3.40.0)
@@ -231,7 +236,11 @@ GEM
       racc (~> 1.4)
     noticed (2.4.3)
       rails (>= 6.1.0)
+    notifications (1.1.0)
+      kaminari (>= 0.15)
+      rails (>= 5.2)
     orm_adapter (0.5.0)
+    popper_js (2.11.8)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -356,6 +365,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   bootsnap
+  bootstrap
   cancancan
   capybara
   debug
@@ -363,8 +373,10 @@ DEPENDENCIES
   elasticsearch
   importmap-rails
   jbuilder
+  jquery-rails
   letter_opener
   noticed
+  notifications (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.4)
   sassc-rails

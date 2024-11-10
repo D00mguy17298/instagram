@@ -83,3 +83,8 @@ gem "elasticsearch"
 gem 'social-share-button'
 
 gem 'noticed'
+
+gem 'bootstrap'
+
+gem 'jquery-rails'
+
