@@ -20,7 +20,8 @@ class PostsController < ApplicationController
       return
     end
 
-    @post.destroy
+    @post.comments.destroy_all
+    @post.delete
     redirect_to dashboard_path, notice: 'Post was successfully deleted.'
   end
 
@@ -29,6 +30,8 @@ class PostsController < ApplicationController
   end
   def show
     @post = Post.find(params[:id])
+    mark_notifications_as_read
+
   end
 
   def index
@@ -55,4 +58,12 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content, :status, :avatar, :location)
   end
+
+  def mark_notifications_as_read
+    return unless current_user
+  
+    notifications_to_mark_as_read = @post.notifications.where(recipient: current_user)
+    notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+  end
+
 end

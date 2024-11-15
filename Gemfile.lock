@@ -236,9 +236,6 @@ GEM
       racc (~> 1.4)
     noticed (2.4.3)
       rails (>= 6.1.0)
-    notifications (1.1.0)
-      kaminari (>= 0.15)
-      rails (>= 5.2)
     orm_adapter (0.5.0)
     popper_js (2.11.8)
     psych (5.1.2)
@@ -376,7 +373,6 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   noticed
-  notifications (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.4)
   sassc-rails

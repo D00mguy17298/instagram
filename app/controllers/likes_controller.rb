@@ -12,6 +12,9 @@ class LikesController < ApplicationController
   def destroy
     @like = current_user.likes.find(params[:id])
     @post = @like.post
+
+    Noticed::Event.where(record_type: 'Like', record_id: @like.id ).destroy_all
+    Noticed::Notification.where( recipient_type: 'User', recipient_id: current_user.id, event_id: @like.id ).destroy_all
     @like.destroy
 
     redirect_to @like.post

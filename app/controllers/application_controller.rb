@@ -1,6 +1,20 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :set_notifications, if: :current_user
+
+  private
+
+  def set_notifications
+    notifications = Noticed::Notification.where(recipient: current_user).newest_first.limit(9)
+    if current_user.notifications.present?
+      @unread = current_user.notifications.unread
+      @read = current_user.notifications.read
+    else
+      @unread = []
+      @read = []
+    end
+  end 
   protected
 
   def after_sign_in_path_for(resource)

@@ -87,4 +87,3 @@ gem 'noticed'
 gem 'bootstrap'
 
 gem 'jquery-rails'
-

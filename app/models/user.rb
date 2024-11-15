@@ -18,7 +18,11 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   
   has_many :likes , dependent: :destroy
-  
+  has_many :notifications, as: :recipient, dependent: :destroy, class_name: 'Noticed::Notification'
+  # Whenever you have noticed events that have the record pointing to user,
+  # such as when a new user joins a team or any similar occurrences,
+  # it's important to ensure that notifications mentioning us are accessible.
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
 
   def initials
     name.split.map { |part| part[0] }.join.upcase
